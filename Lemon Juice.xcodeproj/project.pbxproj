@@ -1,0 +1,422 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		DF7685561E02B50F008AB811 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7685551E02B50F008AB811 /* AppDelegate.swift */; };
+		DF7685581E02B50F008AB811 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7685571E02B50F008AB811 /* Document.swift */; };
+		DF76855B1E02B50F008AB811 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF7685591E02B50F008AB811 /* Document.xib */; };
+		DF76855D1E02B50F008AB811 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF76855C1E02B50F008AB811 /* Assets.xcassets */; };
+		DF7685601E02B50F008AB811 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF76855E1E02B50F008AB811 /* MainMenu.xib */; };
+		DF76856B1E02B50F008AB811 /* Lemon_JuiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF76856A1E02B50F008AB811 /* Lemon_JuiceTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DF7685671E02B50F008AB811 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = DF76854A1E02B50E008AB811 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = DF7685511E02B50E008AB811;
+			remoteInfo = "Lemon Juice";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		DF7685521E02B50E008AB811 /* Lemon Juice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lemon Juice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF7685551E02B50F008AB811 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		DF7685571E02B50F008AB811 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
+		DF76855A1E02B50F008AB811 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
+		DF76855C1E02B50F008AB811 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		DF76855F1E02B50F008AB811 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		DF7685611E02B50F008AB811 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DF7685661E02B50F008AB811 /* Lemon JuiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lemon JuiceTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DF76856A1E02B50F008AB811 /* Lemon_JuiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lemon_JuiceTests.swift; sourceTree = "<group>"; };
+		DF76856C1E02B50F008AB811 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		DF76854F1E02B50E008AB811 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF7685631E02B50F008AB811 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		DF7685491E02B50E008AB811 = {
+			isa = PBXGroup;
+			children = (
+				DF7685541E02B50F008AB811 /* Lemon Juice */,
+				DF7685691E02B50F008AB811 /* Lemon JuiceTests */,
+				DF7685531E02B50F008AB811 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		DF7685531E02B50F008AB811 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				DF7685521E02B50E008AB811 /* Lemon Juice.app */,
+				DF7685661E02B50F008AB811 /* Lemon JuiceTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		DF7685541E02B50F008AB811 /* Lemon Juice */ = {
+			isa = PBXGroup;
+			children = (
+				DF7685551E02B50F008AB811 /* AppDelegate.swift */,
+				DF7685571E02B50F008AB811 /* Document.swift */,
+				DF7685591E02B50F008AB811 /* Document.xib */,
+				DF76855C1E02B50F008AB811 /* Assets.xcassets */,
+				DF76855E1E02B50F008AB811 /* MainMenu.xib */,
+				DF7685611E02B50F008AB811 /* Info.plist */,
+			);
+			path = "Lemon Juice";
+			sourceTree = "<group>";
+		};
+		DF7685691E02B50F008AB811 /* Lemon JuiceTests */ = {
+			isa = PBXGroup;
+			children = (
+				DF76856A1E02B50F008AB811 /* Lemon_JuiceTests.swift */,
+				DF76856C1E02B50F008AB811 /* Info.plist */,
+			);
+			path = "Lemon JuiceTests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		DF7685511E02B50E008AB811 /* Lemon Juice */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF76856F1E02B50F008AB811 /* Build configuration list for PBXNativeTarget "Lemon Juice" */;
+			buildPhases = (
+				DF76854E1E02B50E008AB811 /* Sources */,
+				DF76854F1E02B50E008AB811 /* Frameworks */,
+				DF7685501E02B50E008AB811 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Lemon Juice";
+			productName = "Lemon Juice";
+			productReference = DF7685521E02B50E008AB811 /* Lemon Juice.app */;
+			productType = "com.apple.product-type.application";
+		};
+		DF7685651E02B50F008AB811 /* Lemon JuiceTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DF7685721E02B50F008AB811 /* Build configuration list for PBXNativeTarget "Lemon JuiceTests" */;
+			buildPhases = (
+				DF7685621E02B50F008AB811 /* Sources */,
+				DF7685631E02B50F008AB811 /* Frameworks */,
+				DF7685641E02B50F008AB811 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DF7685681E02B50F008AB811 /* PBXTargetDependency */,
+			);
+			name = "Lemon JuiceTests";
+			productName = "Lemon JuiceTests";
+			productReference = DF7685661E02B50F008AB811 /* Lemon JuiceTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		DF76854A1E02B50E008AB811 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Adam Cowdy";
+				TargetAttributes = {
+					DF7685511E02B50E008AB811 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+					DF7685651E02B50F008AB811 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = DF7685511E02B50E008AB811;
+					};
+				};
+			};
+			buildConfigurationList = DF76854D1E02B50E008AB811 /* Build configuration list for PBXProject "Lemon Juice" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = DF7685491E02B50E008AB811;
+			productRefGroup = DF7685531E02B50F008AB811 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				DF7685511E02B50E008AB811 /* Lemon Juice */,
+				DF7685651E02B50F008AB811 /* Lemon JuiceTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		DF7685501E02B50E008AB811 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF76855D1E02B50F008AB811 /* Assets.xcassets in Resources */,
+				DF76855B1E02B50F008AB811 /* Document.xib in Resources */,
+				DF7685601E02B50F008AB811 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF7685641E02B50F008AB811 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		DF76854E1E02B50E008AB811 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF7685581E02B50F008AB811 /* Document.swift in Sources */,
+				DF7685561E02B50F008AB811 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DF7685621E02B50F008AB811 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DF76856B1E02B50F008AB811 /* Lemon_JuiceTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DF7685681E02B50F008AB811 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = DF7685511E02B50E008AB811 /* Lemon Juice */;
+			targetProxy = DF7685671E02B50F008AB811 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		DF7685591E02B50F008AB811 /* Document.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF76855A1E02B50F008AB811 /* Base */,
+			);
+			name = Document.xib;
+			sourceTree = "<group>";
+		};
+		DF76855E1E02B50F008AB811 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				DF76855F1E02B50F008AB811 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		DF76856D1E02B50F008AB811 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		DF76856E1E02B50F008AB811 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+			};
+			name = Release;
+		};
+		DF7685701E02B50F008AB811 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Lemon Juice/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.acowdy.Lemon-Juice";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		DF7685711E02B50F008AB811 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Lemon Juice/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.acowdy.Lemon-Juice";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		DF7685731E02B50F008AB811 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Lemon JuiceTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.acowdy.Lemon-JuiceTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lemon Juice.app/Contents/MacOS/Lemon Juice";
+			};
+			name = Debug;
+		};
+		DF7685741E02B50F008AB811 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Lemon JuiceTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.acowdy.Lemon-JuiceTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Lemon Juice.app/Contents/MacOS/Lemon Juice";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		DF76854D1E02B50E008AB811 /* Build configuration list for PBXProject "Lemon Juice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF76856D1E02B50F008AB811 /* Debug */,
+				DF76856E1E02B50F008AB811 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DF76856F1E02B50F008AB811 /* Build configuration list for PBXNativeTarget "Lemon Juice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF7685701E02B50F008AB811 /* Debug */,
+				DF7685711E02B50F008AB811 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		DF7685721E02B50F008AB811 /* Build configuration list for PBXNativeTarget "Lemon JuiceTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DF7685731E02B50F008AB811 /* Debug */,
+				DF7685741E02B50F008AB811 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = DF76854A1E02B50E008AB811 /* Project object */;
+}

@@ -407,6 +407,7 @@
 				DF7685711E02B50F008AB811 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		DF7685721E02B50F008AB811 /* Build configuration list for PBXNativeTarget "Lemon JuiceTests" */ = {
 			isa = XCConfigurationList;
@@ -415,6 +416,7 @@
 				DF7685741E02B50F008AB811 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

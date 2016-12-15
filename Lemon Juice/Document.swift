@@ -12,9 +12,6 @@ class Document: NSDocument {
     
     @IBOutlet weak var textView : NSTextView?
     
-    var documentAttributesDict : [String: String] =
-        [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
-    
     private var passwordKey = ""
     private var textStorage : NSTextStorage?
 
@@ -59,17 +56,21 @@ class Document: NSDocument {
         // Make the range the whole textStorage of textView
         let range = NSRange(location: 0, length: textView!.textStorage!.length)
         
+        let attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
+        
         // Get the data from the textStorage
         let data = try textView!.textStorage!.data(from: range,
-                                                   documentAttributes: documentAttributesDict)
+                                                   documentAttributes: attributes)
         
         return data
     }
 
     override func read(from data: Data, ofType typeName: String) throws {
+        var attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
+        let attributesPointer = AutoreleasingUnsafeMutablePointer<NSDictionary?>(&attributes)
+        
         // Create a new text storage for the document
-        let dictRef = AutoreleasingUnsafeMutablePointer<NSDictionary?>(&documentAttributesDict)
-        textStorage = NSTextStorage.init(rtfd: data, documentAttributes: dictRef)!
+        textStorage = NSTextStorage.init(rtfd: data, documentAttributes: attributesPointer)!
     }
 }
 

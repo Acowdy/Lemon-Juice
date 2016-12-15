@@ -9,35 +9,67 @@
 import Cocoa
 
 class Document: NSDocument {
+    
+    @IBOutlet weak var textView : NSTextView?
+    
+    var documentAttributesDict : [String: String] =
+        [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
+    
+    private var passwordKey = ""
+    private var textStorage : NSTextStorage?
 
     override init() {
         super.init()
-        // Add your subclass-specific initialization here.
     }
 
     override class func autosavesInPlace() -> Bool {
         return true
     }
+    
+    // Write files asynchronously
+    class func canAsynchronouslyWrite(to url: URL, ofType typeName: String,
+                                      for saveOperation: NSSaveOperationType) -> Bool {
+        return true
+    }
+    
+    // Read files asynchronously
+    override class func canConcurrentlyReadDocuments(ofType typeName: String) -> Bool {
+        return true
+    }
+    
+    override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
+        // Use textStorage if it already exists e.g. a file has been opened,
+        // else simply make the textStorage field a reference to textView.textStorage
+        if textStorage != nil {
+            textView!.layoutManager!.replaceTextStorage(textStorage!)
+        }
+        else {
+            textStorage = textView!.textStorage!
+        }
+    }
 
     override var windowNibName: String? {
         // Returns the nib file name of the document
-        // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this property and override -makeWindowControllers instead.
         return "Document"
     }
-
+    
+    // Makes the data in the document available to save
     override func data(ofType typeName: String) throws -> Data {
-        // Insert code here to write your document to data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning nil.
-        // You can also choose to override fileWrapperOfType:error:, writeToURL:ofType:error:, or writeToURL:ofType:forSaveOperation:originalContentsURL:error: instead.
-        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        
+        // Make the range the whole textStorage of textView
+        let range = NSRange(location: 0, length: textView!.textStorage!.length)
+        
+        // Get the data from the textStorage
+        let data = try textView!.textStorage!.data(from: range,
+                                                   documentAttributes: documentAttributesDict)
+        
+        return data
     }
 
     override func read(from data: Data, ofType typeName: String) throws {
-        // Insert code here to read your document from the given data of the specified type. If outError != nil, ensure that you create and set an appropriate error when returning false.
-        // You can also choose to override readFromFileWrapper:ofType:error: or readFromURL:ofType:error: instead.
-        // If you override either of these, you should also override -isEntireFileLoaded to return false if the contents are lazily loaded.
-        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+        // Create a new text storage for the document
+        let dictRef = AutoreleasingUnsafeMutablePointer<NSDictionary?>(&documentAttributesDict)
+        textStorage = NSTextStorage.init(rtfd: data, documentAttributes: dictRef)!
     }
-
-
 }
 

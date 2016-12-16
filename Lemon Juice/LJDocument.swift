@@ -8,13 +8,18 @@
 
 import Cocoa
 
-class Document: NSDocument {
+// Class which acts as a controller mediating between a single window controller and one or more 
+// models, in this case a NSTextStorage.
+class LJDocument: NSDocument {
     
+    // IB properties
     @IBOutlet weak var textView : NSTextView?
     
+    // Fields
     private var passwordKey : String?
     private var textStorage : NSTextStorage?
-
+    
+    // Constructor
     override init()
     {
         super.init()
@@ -38,6 +43,43 @@ class Document: NSDocument {
         return true
     }
     
+    // Makes the data in the document available to save
+    override func data(ofType typeName: String) throws -> Data
+    {
+        // Make the range the whole textStorage of textView
+        let range = NSRange(location: 0, length: textView!.textStorage!.length)
+        
+        let attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
+        
+        // Get the data from the textStorage
+        let data = try textView!.textStorage!.data(from: range,
+                                                   documentAttributes: attributes)
+        
+        return data
+    }
+    
+    private func decrypt(cipherTextData withData: Data, passwordKey password: String) -> Data
+    {
+        // TODO: Implement this function
+        return Data.init()
+    }
+    
+    private func encrypt(plainTextData withData: Data, passwordKey password: String) -> Data
+    {
+        // TODO: Implement this function
+        return Data.init()
+    }
+    
+    // Open the data read from a file
+    override func read(from data: Data, ofType typeName: String) throws
+    {
+        var attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
+        let attributesPointer = AutoreleasingUnsafeMutablePointer<NSDictionary?>(&attributes)
+        
+        // Create a new text storage for the document
+        textStorage = NSTextStorage.init(rtfd: data, documentAttributes: attributesPointer)
+    }
+    
     override func windowControllerDidLoadNib(_ windowController: NSWindowController)
     {
         // Use the existing textStorage if it already exists e.g. a file has been opened,
@@ -55,31 +97,7 @@ class Document: NSDocument {
     // Returns the nib file name of the document
     override var windowNibName: String?
     {
-        return "Document"
-    }
-    
-    // Makes the data in the document available to save
-    override func data(ofType typeName: String) throws -> Data
-    {
-        // Make the range the whole textStorage of textView
-        let range = NSRange(location: 0, length: textView!.textStorage!.length)
-        
-        let attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
-        
-        // Get the data from the textStorage
-        let data = try textView!.textStorage!.data(from: range,
-                                                   documentAttributes: attributes)
-        
-        return data
-    }
-
-    override func read(from data: Data, ofType typeName: String) throws
-    {
-        var attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
-        let attributesPointer = AutoreleasingUnsafeMutablePointer<NSDictionary?>(&attributes)
-        
-        // Create a new text storage for the document
-        textStorage = NSTextStorage.init(rtfd: data, documentAttributes: attributesPointer)
+        return "DocumentWindow"
     }
 }
 

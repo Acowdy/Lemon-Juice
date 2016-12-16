@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DF7685561E02B50F008AB811 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7685551E02B50F008AB811 /* AppDelegate.swift */; };
-		DF7685581E02B50F008AB811 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7685571E02B50F008AB811 /* Document.swift */; };
-		DF76855B1E02B50F008AB811 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF7685591E02B50F008AB811 /* Document.xib */; };
+		DF7685561E02B50F008AB811 /* LJAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7685551E02B50F008AB811 /* LJAppDelegate.swift */; };
+		DF7685581E02B50F008AB811 /* LJDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7685571E02B50F008AB811 /* LJDocument.swift */; };
+		DF76855B1E02B50F008AB811 /* DocumentWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF7685591E02B50F008AB811 /* DocumentWindow.xib */; };
 		DF76855D1E02B50F008AB811 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF76855C1E02B50F008AB811 /* Assets.xcassets */; };
 		DF7685601E02B50F008AB811 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF76855E1E02B50F008AB811 /* MainMenu.xib */; };
 		DF76856B1E02B50F008AB811 /* LemonJuiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF76856A1E02B50F008AB811 /* LemonJuiceTests.swift */; };
@@ -27,9 +27,9 @@
 
 /* Begin PBXFileReference section */
 		DF7685521E02B50E008AB811 /* Lemon Juice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lemon Juice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF7685551E02B50F008AB811 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		DF7685571E02B50F008AB811 /* Document.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Document.swift; sourceTree = "<group>"; };
-		DF76855A1E02B50F008AB811 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/Document.xib; sourceTree = "<group>"; };
+		DF7685551E02B50F008AB811 /* LJAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LJAppDelegate.swift; sourceTree = "<group>"; };
+		DF7685571E02B50F008AB811 /* LJDocument.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LJDocument.swift; sourceTree = "<group>"; };
+		DF76855A1E02B50F008AB811 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/DocumentWindow.xib; sourceTree = "<group>"; };
 		DF76855C1E02B50F008AB811 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DF76855F1E02B50F008AB811 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		DF7685611E02B50F008AB811 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,9 +77,9 @@
 		DF7685541E02B50F008AB811 /* Lemon Juice */ = {
 			isa = PBXGroup;
 			children = (
-				DF7685551E02B50F008AB811 /* AppDelegate.swift */,
-				DF7685571E02B50F008AB811 /* Document.swift */,
-				DF7685591E02B50F008AB811 /* Document.xib */,
+				DF7685551E02B50F008AB811 /* LJAppDelegate.swift */,
+				DF7685571E02B50F008AB811 /* LJDocument.swift */,
+				DF7685591E02B50F008AB811 /* DocumentWindow.xib */,
 				DF76855C1E02B50F008AB811 /* Assets.xcassets */,
 				DF76855E1E02B50F008AB811 /* MainMenu.xib */,
 				DF7685611E02B50F008AB811 /* Info.plist */,
@@ -181,7 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF76855D1E02B50F008AB811 /* Assets.xcassets in Resources */,
-				DF76855B1E02B50F008AB811 /* Document.xib in Resources */,
+				DF76855B1E02B50F008AB811 /* DocumentWindow.xib in Resources */,
 				DF7685601E02B50F008AB811 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,8 +200,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF7685581E02B50F008AB811 /* Document.swift in Sources */,
-				DF7685561E02B50F008AB811 /* AppDelegate.swift in Sources */,
+				DF7685581E02B50F008AB811 /* LJDocument.swift in Sources */,
+				DF7685561E02B50F008AB811 /* LJAppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,12 +224,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		DF7685591E02B50F008AB811 /* Document.xib */ = {
+		DF7685591E02B50F008AB811 /* DocumentWindow.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
 				DF76855A1E02B50F008AB811 /* Base */,
 			);
-			name = Document.xib;
+			name = DocumentWindow.xib;
 			sourceTree = "<group>";
 		};
 		DF76855E1E02B50F008AB811 /* MainMenu.xib */ = {

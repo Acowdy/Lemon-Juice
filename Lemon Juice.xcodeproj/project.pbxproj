@@ -12,7 +12,7 @@
 		DF76855B1E02B50F008AB811 /* Document.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF7685591E02B50F008AB811 /* Document.xib */; };
 		DF76855D1E02B50F008AB811 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DF76855C1E02B50F008AB811 /* Assets.xcassets */; };
 		DF7685601E02B50F008AB811 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF76855E1E02B50F008AB811 /* MainMenu.xib */; };
-		DF76856B1E02B50F008AB811 /* Lemon_JuiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF76856A1E02B50F008AB811 /* Lemon_JuiceTests.swift */; };
+		DF76856B1E02B50F008AB811 /* LemonJuiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF76856A1E02B50F008AB811 /* LemonJuiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +34,7 @@
 		DF76855F1E02B50F008AB811 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		DF7685611E02B50F008AB811 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DF7685661E02B50F008AB811 /* Lemon JuiceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Lemon JuiceTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DF76856A1E02B50F008AB811 /* Lemon_JuiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lemon_JuiceTests.swift; sourceTree = "<group>"; };
+		DF76856A1E02B50F008AB811 /* LemonJuiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LemonJuiceTests.swift; sourceTree = "<group>"; };
 		DF76856C1E02B50F008AB811 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -60,7 +60,7 @@
 			isa = PBXGroup;
 			children = (
 				DF7685541E02B50F008AB811 /* Lemon Juice */,
-				DF7685691E02B50F008AB811 /* Lemon JuiceTests */,
+				DF7685691E02B50F008AB811 /* Lemon Juice Tests */,
 				DF7685531E02B50F008AB811 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -87,12 +87,13 @@
 			path = "Lemon Juice";
 			sourceTree = "<group>";
 		};
-		DF7685691E02B50F008AB811 /* Lemon JuiceTests */ = {
+		DF7685691E02B50F008AB811 /* Lemon Juice Tests */ = {
 			isa = PBXGroup;
 			children = (
-				DF76856A1E02B50F008AB811 /* Lemon_JuiceTests.swift */,
+				DF76856A1E02B50F008AB811 /* LemonJuiceTests.swift */,
 				DF76856C1E02B50F008AB811 /* Info.plist */,
 			);
+			name = "Lemon Juice Tests";
 			path = "Lemon JuiceTests";
 			sourceTree = "<group>";
 		};
@@ -208,7 +209,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DF76856B1E02B50F008AB811 /* Lemon_JuiceTests.swift in Sources */,
+				DF76856B1E02B50F008AB811 /* LemonJuiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

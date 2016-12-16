@@ -9,7 +9,7 @@
 import XCTest
 @testable import Lemon_Juice
 
-class Lemon_JuiceTests: XCTestCase {
+class LemonJuiceTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
@@ -21,16 +21,39 @@ class Lemon_JuiceTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
     func testPerformanceExample() {
         // This is an example of a performance test case.
         self.measure {
             // Put the code you want to measure the time of here.
         }
     }
+    
+//    func testEncryptionAndDecryption() {
+//        let doc = Document.init()
+//        let key = "password12345"
+//        let plainTextData = "Hello world".data(using: String.Encoding.unicode)
+//        
+//        // TODO: implement the methods encrypt(data: password: ) and decrypt(data: password: ) in
+//        // the Document class
+//        
+//        let cipherTextData = doc.encrypt(data: plainTextData, password: key)
+//        
+//        let decryptedPlainTextData = doc.decrypt(data: cipherTextData, password: key)
+//        let decryptedPlainText = String.init(data: decryptedPlainTextData,
+//                                             encoding: String.Encoding.unicode)
+//        
+//        XCTAssert(decryptedPlainTextData == plainTextData,
+//                  "The decrypted plaintext does not match the original plaintext")
+//    }
+    
+//    func testEncryptionPerformance() {
+//        let doc = Document.init()
+//        let key = "password12345"
+//        let plainTextData = "Hello world".data(using: String.Encoding.unicode)
+//        
+//        self.measure {
+//            // TODO
+//        }
+//    }
     
 }

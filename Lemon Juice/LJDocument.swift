@@ -49,14 +49,14 @@ class LJDocument: NSDocument {
         return data
     }
     
-    private func decrypt(cipherTextData withData: Data, passwordKey password: String) -> Data {
+    private func decrypt(withData cipherTextData: Data, password passwordKey: String) -> Data {
         // TODO: Implement this function
-        return Data.init()
+        return cipherTextData
     }
     
-    private func encrypt(plainTextData withData: Data, passwordKey password: String) -> Data {
+    private func encrypt(withData plainTextData: Data, password passwordKey: String) -> Data {
         // TODO: Implement this function
-        return Data.init()
+        return plainTextData
     }
     
     // Open data that has been read from a file

@@ -12,14 +12,11 @@ import Cocoa
 // models, in this case a NSTextStorage.
 class LJDocument: NSDocument {
     
-    // IB properties
     @IBOutlet weak var textView : NSTextView?
     
-    // Fields
     private var passwordKey : String?
     private var textStorage : NSTextStorage?
     
-    // Constructor
     override init() {
         super.init()
     }
@@ -28,13 +25,11 @@ class LJDocument: NSDocument {
         return true
     }
     
-    // Write files asynchronously
     class func canAsynchronouslyWrite(to url: URL, ofType typeName: String,
                                       for saveOperation: NSSaveOperationType) -> Bool {
         return true
     }
     
-    // Read files asynchronously
     override class func canConcurrentlyReadDocuments(ofType typeName: String) -> Bool {
         return true
     }
@@ -64,7 +59,7 @@ class LJDocument: NSDocument {
         return Data.init()
     }
     
-    // Open the data read from a file
+    // Open data that has been read from a file
     override func read(from data: Data, ofType typeName: String) throws {
         var attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
         let attributesPointer = AutoreleasingUnsafeMutablePointer<NSDictionary?>(&attributes)

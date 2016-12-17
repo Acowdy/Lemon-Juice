@@ -12,7 +12,7 @@ import Cocoa
 // models, in this case a NSTextStorage.
 class LJDocument: NSDocument {
     
-    @IBOutlet weak var textView : NSTextView?
+    @IBOutlet weak private(set) var textView : NSTextView?
     
     private var passwordKey : String?
     private var textStorageToLoad : NSTextStorage?
@@ -49,12 +49,12 @@ class LJDocument: NSDocument {
         return data
     }
     
-    private func decrypt(withData cipherTextData: Data, password passwordKey: String) -> Data {
+    internal func decrypt(data cipherTextData: Data, password passwordKey: String) -> Data {
         // TODO: Implement this function
         return cipherTextData
     }
     
-    private func encrypt(withData plainTextData: Data, password passwordKey: String) -> Data {
+    internal func encrypt(data plainTextData: Data, password passwordKey: String) -> Data {
         // TODO: Implement this function
         return plainTextData
     }

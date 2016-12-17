@@ -15,7 +15,7 @@ class LJDocument: NSDocument {
     @IBOutlet weak var textView : NSTextView?
     
     private var passwordKey : String?
-    private var textStorage : NSTextStorage?
+    private var textStorageToLoad : NSTextStorage?
     
     override init() {
         super.init()
@@ -64,17 +64,14 @@ class LJDocument: NSDocument {
         var attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
         let attributesPointer = AutoreleasingUnsafeMutablePointer<NSDictionary?>(&attributes)
         
-        // Create a new text storage for the document
-        textStorage = NSTextStorage.init(rtfd: data, documentAttributes: attributesPointer)
+        // Create a new text storage for the document to load once the nib is loaded
+        textStorageToLoad = NSTextStorage.init(rtfd: data, documentAttributes: attributesPointer)
     }
     
     override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
-        // Use the existing textStorage if it already exists e.g. a file has been opened,
-        // else simply make the textStorage field a reference to textView.textStorage
-        if textStorage != nil {
-            textView!.layoutManager!.replaceTextStorage(textStorage!)
-        } else {
-            textStorage = textView!.textStorage!
+        // Load textStorageToLoad if it exists
+        if textStorageToLoad != nil {
+            textView!.layoutManager!.replaceTextStorage(textStorageToLoad!)
         }
     }
 

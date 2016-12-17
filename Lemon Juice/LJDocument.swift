@@ -20,33 +20,29 @@ class LJDocument: NSDocument {
     private var textStorage : NSTextStorage?
     
     // Constructor
-    override init()
-    {
+    override init() {
         super.init()
     }
 
-    override class func autosavesInPlace() -> Bool
-    {
+    override class func autosavesInPlace() -> Bool {
         return true
     }
     
     // Write files asynchronously
     class func canAsynchronouslyWrite(to url: URL, ofType typeName: String,
-                                      for saveOperation: NSSaveOperationType) -> Bool
-    {
+                                      for saveOperation: NSSaveOperationType) -> Bool {
         return true
     }
     
     // Read files asynchronously
-    override class func canConcurrentlyReadDocuments(ofType typeName: String) -> Bool
-    {
+    override class func canConcurrentlyReadDocuments(ofType typeName: String) -> Bool {
         return true
     }
     
     // Makes the data in the document available to save
-    override func data(ofType typeName: String) throws -> Data
-    {
-        // Make the range the whole textStorage of textView
+    override func data(ofType typeName: String) throws -> Data {
+        
+        // Make the range the entire textStorage of textView
         let range = NSRange(location: 0, length: textView!.textStorage!.length)
         
         let attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
@@ -58,21 +54,18 @@ class LJDocument: NSDocument {
         return data
     }
     
-    private func decrypt(cipherTextData withData: Data, passwordKey password: String) -> Data
-    {
+    private func decrypt(cipherTextData withData: Data, passwordKey password: String) -> Data {
         // TODO: Implement this function
         return Data.init()
     }
     
-    private func encrypt(plainTextData withData: Data, passwordKey password: String) -> Data
-    {
+    private func encrypt(plainTextData withData: Data, passwordKey password: String) -> Data {
         // TODO: Implement this function
         return Data.init()
     }
     
     // Open the data read from a file
-    override func read(from data: Data, ofType typeName: String) throws
-    {
+    override func read(from data: Data, ofType typeName: String) throws {
         var attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
         let attributesPointer = AutoreleasingUnsafeMutablePointer<NSDictionary?>(&attributes)
         
@@ -80,23 +73,18 @@ class LJDocument: NSDocument {
         textStorage = NSTextStorage.init(rtfd: data, documentAttributes: attributesPointer)
     }
     
-    override func windowControllerDidLoadNib(_ windowController: NSWindowController)
-    {
+    override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
         // Use the existing textStorage if it already exists e.g. a file has been opened,
         // else simply make the textStorage field a reference to textView.textStorage
-        if textStorage != nil
-        {
+        if textStorage != nil {
             textView!.layoutManager!.replaceTextStorage(textStorage!)
-        }
-        else
-        {
+        } else {
             textStorage = textView!.textStorage!
         }
     }
 
     // Returns the nib file name of the document
-    override var windowNibName: String?
-    {
+    override var windowNibName: String? {
         return "DocumentWindow"
     }
 }

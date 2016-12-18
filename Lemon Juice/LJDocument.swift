@@ -19,6 +19,9 @@ class LJDocument: NSDocument {
     
     override init() {
         super.init()
+        
+        // TODO: Delete the next line once the password dialogues are implemented
+        passwordKey = ""
     }
 
     override class func autosavesInPlace() -> Bool {
@@ -39,24 +42,14 @@ class LJDocument: NSDocument {
         
         // Make the range the entire textStorage of textView
         let range = NSRange(location: 0, length: textView!.textStorage!.length)
-        
         let attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
         
-        // Get the data from the textStorage
-        let data = try textView!.textStorage!.data(from: range,
+        // Get the data from the textStorage and encrypt it
+        let plainTextData = try textView!.textStorage!.data(from: range,
                                                    documentAttributes: attributes)
+        let cipherTextData = LJEncrypt(data: plainTextData, password: passwordKey!)
         
-        return data
-    }
-    
-    internal func decrypt(data cipherTextData: Data, password passwordKey: String) -> Data {
-        // TODO: Implement this function
         return cipherTextData
-    }
-    
-    internal func encrypt(data plainTextData: Data, password passwordKey: String) -> Data {
-        // TODO: Implement this function
-        return plainTextData
     }
     
     // Open data that has been read from a file
@@ -64,8 +57,12 @@ class LJDocument: NSDocument {
         var attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
         let attributesPointer = AutoreleasingUnsafeMutablePointer<NSDictionary?>(&attributes)
         
+        // Decrypt the given data
+        let plainTextData = LJDecrypt(data: data, password: passwordKey!)
+        
         // Create a new text storage for the document to load once the nib is loaded
-        textStorageToLoad = NSTextStorage.init(rtfd: data, documentAttributes: attributesPointer)
+        textStorageToLoad = NSTextStorage.init(rtfd: plainTextData,
+                                               documentAttributes: attributesPointer)
     }
     
     override func windowControllerDidLoadNib(_ windowController: NSWindowController) {

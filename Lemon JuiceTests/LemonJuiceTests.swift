@@ -22,12 +22,11 @@ class LemonJuiceTests: XCTestCase {
     }
     
     func testEncryptionAndDecryption() {
-        let doc = LJDocument.init()
         let key = "password12345"
         let plainTextData = "Hello world".data(using: String.Encoding.unicode)!
         
-        let cipherTextData = doc.encrypt(data: plainTextData, password: key)
-        let decryptedPlainTextData = doc.decrypt(data: cipherTextData, password: key)
+        let cipherTextData = LJEncrypt(data: plainTextData, password: key)
+        let decryptedPlainTextData = LJDecrypt(data: cipherTextData, password: key)
         
         // Test that the decrypted data is the same as the original plaintext data
         XCTAssert(decryptedPlainTextData == plainTextData,
@@ -35,12 +34,11 @@ class LemonJuiceTests: XCTestCase {
     }
     
     func testEncryptionPerformance() {
-        let doc = LJDocument.init()
         let key = "password12345"
         let plainTextData = "Hello world".data(using: String.Encoding.unicode)!
         
         self.measure {
-            doc.encrypt(data: plainTextData, password: key)
+            let _ = LJEncrypt(data: plainTextData, password: key)
         }
     }
     

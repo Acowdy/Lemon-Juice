@@ -75,18 +75,22 @@ class LJDocument: NSDocument {
     }
     
     @IBAction func setPassword(_ sender: AnyObject) {
+        
         let givenPassword = passwordField!.stringValue
+        
         // Validate the password
         if (givenPassword.characters.count < 8) {
             // Passwords must be at least 8 characters long
             errorLabel.isHidden = false
             errorLabel.stringValue = "Password must be at least 8 characters long"
         } else if (passwordField!.stringValue != confirmPasswordField!.stringValue) {
+            // The password must be the same in both fields
             errorLabel.isHidden = false
             errorLabel.stringValue = "Passwords don't match"
         } else {
             // Everything is in order, set the password
             passwordKey = givenPassword
+            
             windowForSheet!.endSheet(setPasswordSheet!)
         }
     }
@@ -100,10 +104,13 @@ class LJDocument: NSDocument {
         
         // Ask the user to set a password if we haven't already
         if (passwordKey == nil) {
+            
             if (setPasswordSheet == nil) {
+                // Load the password sheet xib file if it isn't loaded already
                 Bundle.main.loadNibNamed("LJSetPasswordDialog", owner: self, topLevelObjects: nil)
             }
             
+            // Make the window visible before opening the sheet
             windowController.showWindow(self)
             windowForSheet!.beginSheet(setPasswordSheet!, completionHandler: nil)
         }

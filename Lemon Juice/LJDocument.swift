@@ -84,6 +84,16 @@ class LJDocument: NSDocument {
         }
     }
     
+    private func showSetPasswordSheet() {
+        
+        if setPasswordSheet == nil {
+            // Load the password sheet xib file if it isn't loaded already
+            Bundle.main.loadNibNamed("LJSetPasswordDialog", owner: self, topLevelObjects: nil)
+        }
+        
+        windowForSheet!.beginSheet(setPasswordSheet!, completionHandler: nil)
+    }
+    
     override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
         
         if dataToLoad != nil {
@@ -102,15 +112,9 @@ class LJDocument: NSDocument {
         
         // Ask the user to set a password if we haven't already
         if passwordKey == nil {
-            
-            if setPasswordSheet == nil {
-                // Load the password sheet xib file if it isn't loaded already
-                Bundle.main.loadNibNamed("LJSetPasswordDialog", owner: self, topLevelObjects: nil)
-            }
-            
             // Make the window visible before opening the sheet
             windowController.showWindow(self)
-            windowForSheet!.beginSheet(setPasswordSheet!, completionHandler: nil)
+            showSetPasswordSheet()
         }
     }
 

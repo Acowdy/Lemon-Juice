@@ -15,7 +15,7 @@ class LJDocument: NSDocument {
     @IBOutlet weak private var textView: NSTextView!
     
     @IBOutlet var setPasswordSheet: NSWindow!
-    @IBOutlet weak var passwordField: NSSecureTextField!
+    @IBOutlet weak var setPasswordField: NSSecureTextField!
     @IBOutlet weak var confirmPasswordField: NSSecureTextField!
     @IBOutlet weak var errorLabel: NSTextField!
     
@@ -65,14 +65,14 @@ class LJDocument: NSDocument {
     
     @IBAction func setPassword(_ sender: AnyObject) {
         
-        let givenPassword = passwordField!.stringValue
+        let givenPassword = setPasswordField!.stringValue
         
         // Validate the password
         if givenPassword.characters.count < 8 {
             // Passwords must be at least 8 characters long
             errorLabel.isHidden = false
             errorLabel.stringValue = "Password must be at least 8 characters long"
-        } else if passwordField!.stringValue != confirmPasswordField!.stringValue {
+        } else if givenPassword != confirmPasswordField!.stringValue {
             // The password must be the same in both fields
             errorLabel.isHidden = false
             errorLabel.stringValue = "Passwords don't match"
@@ -110,11 +110,13 @@ class LJDocument: NSDocument {
             textView!.layoutManager!.replaceTextStorage(textStorageToLoad!)
         }
         
-        // Ask the user to set a password if we haven't already
-        if passwordKey == nil {
+        // Ask the user to set a password if we are creating a new document
+        if dataToLoad == nil {
             // Make the window visible before opening the sheet
             windowController.showWindow(self)
             showSetPasswordSheet()
+        } else {
+            // TODO: If we are opening a file, ask for its password
         }
     }
 

@@ -5,7 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11201"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="Document" customModule="Lemon_Juice" customModuleProvider="target">
+        <customObject id="-2" userLabel="File's Owner" customClass="LJDocument" customModule="Lemon_Juice" customModuleProvider="target">
             <connections>
                 <outlet property="textView" destination="YLn-4G-HNq" id="yD2-LH-Gfp"/>
                 <outlet property="window" destination="xOd-HO-29H" id="JIz-fz-R2o"/>

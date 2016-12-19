@@ -12,15 +12,15 @@ import Cocoa
 // models, in this case a NSTextStorage.
 class LJDocument: NSDocument {
     
-    @IBOutlet weak private var textView : NSTextView?
+    @IBOutlet weak private var textView: NSTextView!
     
-    @IBOutlet var setPasswordSheet: NSWindow?
-    @IBOutlet weak var passwordField: NSSecureTextField?
-    @IBOutlet weak var confirmPasswordField: NSSecureTextField?
+    @IBOutlet var setPasswordSheet: NSWindow!
+    @IBOutlet weak var passwordField: NSSecureTextField!
+    @IBOutlet weak var confirmPasswordField: NSSecureTextField!
     @IBOutlet weak var errorLabel: NSTextField!
     
-    private var passwordKey : String?
-    private var textStorageToLoad : NSTextStorage?
+    private var passwordKey: String?
+    private var dataToLoad: Data?
     
     override init() {
         super.init()
@@ -60,18 +60,7 @@ class LJDocument: NSDocument {
     
     // Open data that has been read from a file
     override func read(from data: Data, ofType typeName: String) throws {
-        var attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
-        let attributesPointer = AutoreleasingUnsafeMutablePointer<NSDictionary?>(&attributes)
-        
-        // FIXME: Remove the next line when password asking is properly implemented
-        passwordKey = ""
-        
-        // Decrypt the given data
-        let plainTextData = LJDecrypt(data: data, password: passwordKey!)
-        
-        // Create a new text storage for the document to load once the nib is loaded
-        textStorageToLoad = NSTextStorage.init(rtfd: plainTextData,
-                                               documentAttributes: attributesPointer)
+        dataToLoad = data
     }
     
     @IBAction func setPassword(_ sender: AnyObject) {
@@ -79,11 +68,11 @@ class LJDocument: NSDocument {
         let givenPassword = passwordField!.stringValue
         
         // Validate the password
-        if (givenPassword.characters.count < 8) {
+        if givenPassword.characters.count < 8 {
             // Passwords must be at least 8 characters long
             errorLabel.isHidden = false
             errorLabel.stringValue = "Password must be at least 8 characters long"
-        } else if (passwordField!.stringValue != confirmPasswordField!.stringValue) {
+        } else if passwordField!.stringValue != confirmPasswordField!.stringValue {
             // The password must be the same in both fields
             errorLabel.isHidden = false
             errorLabel.stringValue = "Passwords don't match"
@@ -97,15 +86,24 @@ class LJDocument: NSDocument {
     
     override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
         
-        // Load textStorageToLoad if it exists
-        if (textStorageToLoad != nil) {
+        if dataToLoad != nil {
+            // FIXME: Remove this next line when password asking is properly implemented
+            passwordKey = ""
+            
+            // Decrypt the data
+            let plainTextData = LJDecrypt(data: dataToLoad!, password: passwordKey!)
+            
+            var attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
+            let attributesPointer = AutoreleasingUnsafeMutablePointer<NSDictionary?>(&attributes)
+            let textStorageToLoad = NSTextStorage.init(rtfd: plainTextData,
+                                                   documentAttributes: attributesPointer)
             textView!.layoutManager!.replaceTextStorage(textStorageToLoad!)
         }
         
         // Ask the user to set a password if we haven't already
-        if (passwordKey == nil) {
+        if passwordKey == nil {
             
-            if (setPasswordSheet == nil) {
+            if setPasswordSheet == nil {
                 // Load the password sheet xib file if it isn't loaded already
                 Bundle.main.loadNibNamed("LJSetPasswordDialog", owner: self, topLevelObjects: nil)
             }

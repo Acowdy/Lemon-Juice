@@ -17,7 +17,13 @@ class LJDocument: NSDocument {
     @IBOutlet var setPasswordSheet: NSWindow!
     @IBOutlet weak var setPasswordField: NSSecureTextField!
     @IBOutlet weak var confirmPasswordField: NSSecureTextField!
-    @IBOutlet weak var errorLabel: NSTextField!
+    @IBOutlet weak var setPasswordErrorLabel: NSTextField!
+    @IBOutlet weak var setPasswordOKButton: NSButton!
+    
+    @IBOutlet var enterPasswordSheet: NSWindow!
+    @IBOutlet weak var enterPasswordField: NSSecureTextField!
+    @IBOutlet weak var enterPasswordErrorLabel: NSTextField!
+    @IBOutlet weak var enterPasswordOKButton: NSButton!
     
     private var passwordKey: String?
     private var dataToLoad: Data?
@@ -35,12 +41,31 @@ class LJDocument: NSDocument {
         return true
     }
     
+    @IBAction func cancelEnterPassword(_ sender: AnyObject) {
+        windowForSheet!.endSheet(enterPasswordSheet)
+        close()
+    }
+    
     @IBAction func cancelSetPassword(_ sender: AnyObject) {
+        windowForSheet!.endSheet(setPasswordSheet)
         close()
     }
     
     override class func canConcurrentlyReadDocuments(ofType typeName: String) -> Bool {
         return true
+    }
+    
+    // This function is called when the enterPasswordField, setPasswordField or
+    // confirmPassordField's text contents changes.
+    override func controlTextDidChange(_ obj: Notification) {
+        
+        // Call appropriate helper method depending on which text field was altered
+        if obj.object as! NSSecureTextField === enterPasswordField {
+            enterPasswordFieldTextDidChange()
+        } else if obj.object as! NSSecureTextField === setPasswordField
+                  || obj.object as! NSSecureTextField === confirmPasswordField {
+            setPasswordFieldsTextDidChange()
+        }
     }
     
     // Makes the data in the document available to save
@@ -52,10 +77,43 @@ class LJDocument: NSDocument {
         
         // Get the data from the textStorage and encrypt it
         let plainTextData = try textView!.textStorage!.data(from: range,
-                                                   documentAttributes: attributes)
+                                                            documentAttributes: attributes)
         let cipherTextData = LJEncrypt(data: plainTextData, password: passwordKey!)
         
         return cipherTextData
+    }
+    
+    private func enterPasswordFieldTextDidChange() {
+        // Only allow the user to click the OK button if a password has been entered
+        if (enterPasswordField.stringValue != "") {
+            enterPasswordOKButton.isEnabled = true
+        } else {
+            enterPasswordOKButton.isEnabled = false
+        }
+    }
+    
+    // Decrypt data with given password and validate it, then close the dialog
+    @IBAction func passwordEntered(_ sender: AnyObject) {
+        
+        passwordKey = enterPasswordField.stringValue
+        
+        // Decrypt the data with the given password
+        do {
+            let plainTextData = try LJDecrypt(data: dataToLoad!, password: passwordKey!)
+            
+            windowForSheet!.endSheet(enterPasswordSheet)
+            
+            var attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
+            let attributesPointer = AutoreleasingUnsafeMutablePointer<NSDictionary?>(&attributes)
+            let textStorageToLoad = NSTextStorage.init(rtfd: plainTextData,
+                                                       documentAttributes: attributesPointer)
+            textView!.layoutManager!.replaceTextStorage(textStorageToLoad!)
+            
+        } catch {
+            // The password is incorrect
+            enterPasswordErrorLabel.stringValue = "Incorrect password"
+            enterPasswordErrorLabel.isHidden = false
+        }
     }
     
     // Open data that has been read from a file
@@ -70,12 +128,14 @@ class LJDocument: NSDocument {
         // Validate the password
         if givenPassword.characters.count < 8 {
             // Passwords must be at least 8 characters long
-            errorLabel.isHidden = false
-            errorLabel.stringValue = "Password must be at least 8 characters long"
+            setPasswordErrorLabel.stringValue = "Password must be at least 8 characters long"
+            setPasswordErrorLabel.isHidden = false
+            
         } else if givenPassword != confirmPasswordField!.stringValue {
             // The password must be the same in both fields
-            errorLabel.isHidden = false
-            errorLabel.stringValue = "Passwords don't match"
+            setPasswordErrorLabel.stringValue = "Passwords don't match"
+            setPasswordErrorLabel.isHidden = false
+            
         } else {
             // Everything is in order, set the password
             passwordKey = givenPassword
@@ -84,45 +144,53 @@ class LJDocument: NSDocument {
         }
     }
     
+    private func setPasswordFieldsTextDidChange() {
+        // Only allow the user to click the OK button if a password has been entered
+        if (setPasswordField.stringValue != "" && confirmPasswordField.stringValue != "") {
+            setPasswordOKButton.isEnabled = true
+        } else {
+            setPasswordOKButton.isEnabled = false
+        }
+    }
+    
+    private func showEnterPasswordSheet() {
+        
+        // Load the password sheet xib file if it isn't loaded already
+        if enterPasswordSheet == nil {
+            Bundle.main.loadNibNamed("EnterPasswordDialog", owner: self, topLevelObjects: nil)
+        }
+        
+        windowForSheet!.beginSheet(enterPasswordSheet!, completionHandler: nil)
+    }
+    
     private func showSetPasswordSheet() {
         
+        // Load the password sheet xib file if it isn't loaded already
         if setPasswordSheet == nil {
-            // Load the password sheet xib file if it isn't loaded already
-            Bundle.main.loadNibNamed("LJSetPasswordDialog", owner: self, topLevelObjects: nil)
+            Bundle.main.loadNibNamed("SetPasswordDialog", owner: self, topLevelObjects: nil)
         }
         
         windowForSheet!.beginSheet(setPasswordSheet!, completionHandler: nil)
     }
-    
-    override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
-        
-        if dataToLoad != nil {
-            // FIXME: Remove this next line when password asking is properly implemented
-            passwordKey = ""
-            
-            // Decrypt the data
-            let plainTextData = LJDecrypt(data: dataToLoad!, password: passwordKey!)
-            
-            var attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
-            let attributesPointer = AutoreleasingUnsafeMutablePointer<NSDictionary?>(&attributes)
-            let textStorageToLoad = NSTextStorage.init(rtfd: plainTextData,
-                                                   documentAttributes: attributesPointer)
-            textView!.layoutManager!.replaceTextStorage(textStorageToLoad!)
-        }
-        
-        // Ask the user to set a password if we are creating a new document
-        if dataToLoad == nil {
-            // Make the window visible before opening the sheet
-            windowController.showWindow(self)
-            showSetPasswordSheet()
-        } else {
-            // TODO: If we are opening a file, ask for its password
-        }
-    }
 
-    // Returns the nib file name of the document
-    override var windowNibName: String? {
-        return "DocumentWindow"
+    override func makeWindowControllers() {
+        
+        let documentWindowController = NSWindowController.init(windowNibName: "DocumentWindow",
+                                                               owner: self)
+        addWindowController(documentWindowController)
+        
+        // Make the window visible before opening a sheet
+        documentWindowController.showWindow(self)
+        
+        if dataToLoad == nil {
+            // If there is no data to load then we are creating a new document and need to ask the
+            // user to set a password for the new document.
+            showSetPasswordSheet()
+            
+        } else {
+            // We are opening a file, ask for its password
+            showEnterPasswordSheet()
+        }
     }
 }
 

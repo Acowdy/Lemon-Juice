@@ -9,7 +9,11 @@
 import Cocoa
 import Security
 
-public func LJDecrypt(data cipherTextData: Data, password passwordKey: String) -> Data {
+enum LJEncryptionError {
+    case incorrectPassword
+}
+
+public func LJDecrypt(data cipherTextData: Data, password passwordKey: String) throws -> Data {
     // TODO: Implement this function
     return cipherTextData
 }

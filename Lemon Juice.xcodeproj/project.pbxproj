@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		DF246E9B1E074B4A009E1E2B /* LJSetPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF246E9A1E074B4A009E1E2B /* LJSetPasswordDialog.xib */; };
+		DF246E9B1E074B4A009E1E2B /* SetPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF246E9A1E074B4A009E1E2B /* SetPasswordDialog.xib */; };
+		DF2EB43A1E082E6D00B43845 /* EnterPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF2EB4391E082E6D00B43845 /* EnterPasswordDialog.xib */; };
 		DF32C75E1E06FEE2001D22EF /* Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32C75D1E06FEE2001D22EF /* Encryption.swift */; };
 		DF7685561E02B50F008AB811 /* LJAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7685551E02B50F008AB811 /* LJAppDelegate.swift */; };
 		DF7685581E02B50F008AB811 /* LJDocument.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF7685571E02B50F008AB811 /* LJDocument.swift */; };
@@ -28,7 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		DF246E9A1E074B4A009E1E2B /* LJSetPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LJSetPasswordDialog.xib; sourceTree = "<group>"; };
+		DF246E9A1E074B4A009E1E2B /* SetPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetPasswordDialog.xib; sourceTree = "<group>"; };
+		DF2EB4391E082E6D00B43845 /* EnterPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnterPasswordDialog.xib; sourceTree = "<group>"; };
 		DF32C75D1E06FEE2001D22EF /* Encryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encryption.swift; sourceTree = "<group>"; };
 		DF7685521E02B50E008AB811 /* Lemon Juice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Lemon Juice.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF7685551E02B50F008AB811 /* LJAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LJAppDelegate.swift; sourceTree = "<group>"; };
@@ -83,7 +85,8 @@
 			children = (
 				DF7685551E02B50F008AB811 /* LJAppDelegate.swift */,
 				DF7685571E02B50F008AB811 /* LJDocument.swift */,
-				DF246E9A1E074B4A009E1E2B /* LJSetPasswordDialog.xib */,
+				DF2EB4391E082E6D00B43845 /* EnterPasswordDialog.xib */,
+				DF246E9A1E074B4A009E1E2B /* SetPasswordDialog.xib */,
 				DF32C75D1E06FEE2001D22EF /* Encryption.swift */,
 				DF7685591E02B50F008AB811 /* DocumentWindow.xib */,
 				DF76855C1E02B50F008AB811 /* Assets.xcassets */,
@@ -187,9 +190,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				DF76855D1E02B50F008AB811 /* Assets.xcassets in Resources */,
-				DF246E9B1E074B4A009E1E2B /* LJSetPasswordDialog.xib in Resources */,
+				DF246E9B1E074B4A009E1E2B /* SetPasswordDialog.xib in Resources */,
 				DF76855B1E02B50F008AB811 /* DocumentWindow.xib in Resources */,
 				DF7685601E02B50F008AB811 /* MainMenu.xib in Resources */,
+				DF2EB43A1E082E6D00B43845 /* EnterPasswordDialog.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

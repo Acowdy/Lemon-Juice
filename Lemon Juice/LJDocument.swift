@@ -26,7 +26,7 @@ class LJDocument: NSDocument {
     @IBOutlet weak var enterPasswordOKButton: NSButton!
     
     private var passwordKey: String?
-    private var dataToLoad: Data?
+    private var encryptedDataToLoad: Data?
     
     override init() {
         super.init()
@@ -62,6 +62,7 @@ class LJDocument: NSDocument {
         // Call appropriate helper method depending on which text field was altered
         if obj.object as! NSSecureTextField === enterPasswordField {
             enterPasswordFieldTextDidChange()
+            
         } else if obj.object as! NSSecureTextField === setPasswordField
                   || obj.object as! NSSecureTextField === confirmPasswordField {
             setPasswordFieldsTextDidChange()
@@ -92,6 +93,17 @@ class LJDocument: NSDocument {
         }
     }
     
+    // Convert the given data to a NSTextStorage object and load it to the NSTextView for this
+    // document. Note that the argument to this function must be plaintext data.
+    private func loadData(_ data: Data) {
+        var attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
+        let attributesPointer = AutoreleasingUnsafeMutablePointer<NSDictionary?>(&attributes)
+        let textStorageToLoad = NSTextStorage.init(rtfd: data,
+                                                   documentAttributes: attributesPointer)
+        
+        textView!.layoutManager!.replaceTextStorage(textStorageToLoad!)
+    }
+    
     // Decrypt data with given password and validate it, then close the dialog
     @IBAction func passwordEntered(_ sender: AnyObject) {
         
@@ -99,15 +111,10 @@ class LJDocument: NSDocument {
         
         // Decrypt the data with the given password
         do {
-            let plainTextData = try LJDecrypt(data: dataToLoad!, password: passwordKey!)
+            let plainTextData = try LJDecrypt(data: encryptedDataToLoad!, password: passwordKey!)
+            loadData(plainTextData)
             
             windowForSheet!.endSheet(enterPasswordSheet)
-            
-            var attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
-            let attributesPointer = AutoreleasingUnsafeMutablePointer<NSDictionary?>(&attributes)
-            let textStorageToLoad = NSTextStorage.init(rtfd: plainTextData,
-                                                       documentAttributes: attributesPointer)
-            textView!.layoutManager!.replaceTextStorage(textStorageToLoad!)
             
         } catch {
             // The password is incorrect
@@ -118,7 +125,7 @@ class LJDocument: NSDocument {
     
     // Open data that has been read from a file
     override func read(from data: Data, ofType typeName: String) throws {
-        dataToLoad = data
+        encryptedDataToLoad = data
     }
     
     @IBAction func setPassword(_ sender: AnyObject) {
@@ -182,7 +189,7 @@ class LJDocument: NSDocument {
         // Make the window visible before opening a sheet
         documentWindowController.showWindow(self)
         
-        if dataToLoad == nil {
+        if encryptedDataToLoad == nil {
             // If there is no data to load then we are creating a new document and need to ask the
             // user to set a password for the new document.
             showSetPasswordSheet()

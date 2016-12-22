@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DF0FE0DB1E0A1D2F003E3487 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DF0FE0DA1E0A1D2F003E3487 /* Security.framework */; };
 		DF246E9B1E074B4A009E1E2B /* SetPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF246E9A1E074B4A009E1E2B /* SetPasswordDialog.xib */; };
 		DF2EB43A1E082E6D00B43845 /* EnterPasswordDialog.xib in Resources */ = {isa = PBXBuildFile; fileRef = DF2EB4391E082E6D00B43845 /* EnterPasswordDialog.xib */; };
 		DF32C75E1E06FEE2001D22EF /* Encryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF32C75D1E06FEE2001D22EF /* Encryption.swift */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		DF0FE0DA1E0A1D2F003E3487 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		DF246E9A1E074B4A009E1E2B /* SetPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SetPasswordDialog.xib; sourceTree = "<group>"; };
 		DF2EB4391E082E6D00B43845 /* EnterPasswordDialog.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EnterPasswordDialog.xib; sourceTree = "<group>"; };
 		DF32C75D1E06FEE2001D22EF /* Encryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Encryption.swift; sourceTree = "<group>"; };
@@ -49,6 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF0FE0DB1E0A1D2F003E3487 /* Security.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -62,12 +65,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DF0FE0D91E0A1D2F003E3487 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DF0FE0DA1E0A1D2F003E3487 /* Security.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		DF7685491E02B50E008AB811 = {
 			isa = PBXGroup;
 			children = (
 				DF7685541E02B50F008AB811 /* Lemon Juice */,
 				DF7685691E02B50F008AB811 /* Lemon Juice Tests */,
 				DF7685531E02B50F008AB811 /* Products */,
+				DF0FE0D91E0A1D2F003E3487 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};

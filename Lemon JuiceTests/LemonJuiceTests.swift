@@ -22,23 +22,59 @@ class LemonJuiceTests: XCTestCase {
     }
     
     func testEncryptionAndDecryption() {
-        let key = "password12345"
+        var key = "password12345"
         let plainTextData = "Hello world".data(using: String.Encoding.unicode)!
         
+        // Encrypt the data
         let cipherTextData = LJEncrypt(data: plainTextData, password: key)
-        let decryptedPlainTextData = LJDecrypt(data: cipherTextData, password: key)
+        
+        var decryptedPlainTextData: Data?
+        
+        // Try to decrypt the data with an incorrect password
+        key = "incorrectpassword"
+        do {
+            decryptedPlainTextData = try LJDecrypt(data: cipherTextData, password: key)
+            XCTFail("Decryption with incorrect key didn't throw an exception")
+            
+        } catch LJEncryptionError.incorrectPassword {
+            // Just continue
+            print("Correct exception thrown")
+            
+        } catch {
+            XCTFail("Decryption with incorrect key threw wrong exception")
+        }
+        
+        // Try to decrypt the data with the correct password
+        key = "password12345"
+        do {
+            decryptedPlainTextData = try LJDecrypt(data: cipherTextData, password: key)
+            
+        } catch {
+            XCTFail("Decryption failed")
+        }
         
         // Test that the decrypted data is the same as the original plaintext data
         XCTAssert(decryptedPlainTextData == plainTextData,
                   "The decrypted plaintext does not match the original plaintext")
+        
     }
     
     func testEncryptionPerformance() {
         let key = "password12345"
-        let plainTextData = "Hello world".data(using: String.Encoding.unicode)!
+        var plainTextData = "Hello world".data(using: String.Encoding.unicode)!
+        
+        var cipherTextData: Data?
         
         self.measure {
-            let _ = LJEncrypt(data: plainTextData, password: key)
+            cipherTextData = LJEncrypt(data: plainTextData, password: key)
+        }
+        self.measure {
+            do {
+                try plainTextData = LJDecrypt(data: cipherTextData!, password: key)
+            } catch {
+                // There should definitely not be any errors here...
+                XCTFail("Decryption failed")
+            }
         }
     }
     

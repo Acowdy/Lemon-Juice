@@ -1,6 +1,6 @@
 //
-//  Lemon_JuiceTests.swift
-//  Lemon JuiceTests
+//  LemonJuiceTests.swift
+//  Lemon Juice Tests
 //
 //  Created by Adam Cowdy on 15/12/2016.
 //  Copyright © 2016 Adam Cowdy. All rights reserved.
@@ -61,16 +61,22 @@ class LemonJuiceTests: XCTestCase {
     
     func testEncryptionPerformance() {
         let key = "password12345"
+        let plainTextData = "Hello world".data(using: String.Encoding.unicode)!
+        
+        self.measure {
+            let _ = LJEncrypt(data: plainTextData, password: key)
+        }
+    }
+    
+    func testDencryptionPerformance() {
+        let key = "password12345"
         var plainTextData = "Hello world".data(using: String.Encoding.unicode)!
         
-        var cipherTextData: Data?
+        let cipherTextData = LJEncrypt(data: plainTextData, password: key)
         
         self.measure {
-            cipherTextData = LJEncrypt(data: plainTextData, password: key)
-        }
-        self.measure {
             do {
-                try plainTextData = LJDecrypt(data: cipherTextData!, password: key)
+                try plainTextData = LJDecrypt(data: cipherTextData, password: key)
             } catch {
                 // There should definitely not be any errors here...
                 XCTFail("Decryption failed")

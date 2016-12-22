@@ -1,5 +1,5 @@
 //
-//  AppDelegate.swift
+//  LJAppDelegate.swift
 //  Lemon Juice
 //
 //  Created by Adam Cowdy on 15/12/2016.

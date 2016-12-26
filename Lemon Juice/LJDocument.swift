@@ -58,20 +58,18 @@ class LJDocument: NSDocument {
     // This function is called when the enterPasswordField, setPasswordField or
     // confirmPassordField's text contents changes.
     override func controlTextDidChange(_ obj: Notification) {
+        let senderTextField = obj as! NSSecureTextField
         
         // Call appropriate helper method depending on which text field was altered
-        if obj.object as! NSSecureTextField === enterPasswordField {
+        if senderTextField === enterPasswordField {
             enterPasswordFieldTextDidChange()
-            
-        } else if obj.object as! NSSecureTextField === setPasswordField
-                  || obj.object as! NSSecureTextField === confirmPasswordField {
+        } else if senderTextField === setPasswordField || senderTextField === confirmPasswordField {
             setPasswordFieldsTextDidChange()
         }
     }
     
     // Makes the data in the document available to save
     override func data(ofType typeName: String) throws -> Data {
-        
         // Make the range the entire textStorage of textView
         let range = NSRange(location: 0, length: textView!.textStorage!.length)
         let attributes = [NSDocumentTypeDocumentAttribute: NSRTFDTextDocumentType]
@@ -106,7 +104,6 @@ class LJDocument: NSDocument {
     
     // Decrypt data with given password and validate it, then close the dialog
     @IBAction func passwordEntered(_ sender: AnyObject) {
-        
         passwordKey = enterPasswordField.stringValue
         
         // Decrypt the data with the given password
@@ -129,7 +126,6 @@ class LJDocument: NSDocument {
     }
     
     @IBAction func setPassword(_ sender: AnyObject) {
-        
         let givenPassword = setPasswordField!.stringValue
         
         // Validate the password
@@ -161,7 +157,6 @@ class LJDocument: NSDocument {
     }
     
     private func showEnterPasswordSheet() {
-        
         // Load the password sheet xib file if it isn't loaded already
         if enterPasswordSheet == nil {
             Bundle.main.loadNibNamed("EnterPasswordDialog", owner: self, topLevelObjects: nil)
@@ -171,7 +166,6 @@ class LJDocument: NSDocument {
     }
     
     private func showSetPasswordSheet() {
-        
         // Load the password sheet xib file if it isn't loaded already
         if setPasswordSheet == nil {
             Bundle.main.loadNibNamed("SetPasswordDialog", owner: self, topLevelObjects: nil)
@@ -181,7 +175,6 @@ class LJDocument: NSDocument {
     }
 
     override func makeWindowControllers() {
-        
         let documentWindowController = NSWindowController.init(windowNibName: "DocumentWindow",
                                                                owner: self)
         addWindowController(documentWindowController)

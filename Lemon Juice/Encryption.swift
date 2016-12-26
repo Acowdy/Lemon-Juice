@@ -19,7 +19,6 @@ enum LJEncryptionError: Error {
 }
 
 public func LJDecrypt(data cipherTextData: Data, password passwordKey: String) throws -> Data {
-    
     // Generate a key
     var keyErrorPtr: Unmanaged<CFError>? = nil
     let keySize = 256 as CFNumber
@@ -34,10 +33,8 @@ public func LJDecrypt(data cipherTextData: Data, password passwordKey: String) t
     
     // Check for errors in key generation
     guard keyErrorPtr == nil else {
-        
         // Exit if the key can't be generated, this shouldn't happen
         fatalError("Error generating key: " + keyErrorPtr!.takeRetainedValue().localizedDescription)
-        
     }
     
     var decryptionErrorPtr: Unmanaged<CFError>? = nil
@@ -47,10 +44,8 @@ public func LJDecrypt(data cipherTextData: Data, password passwordKey: String) t
     
     // Check for errors in creating the decrypt transform
     guard decryptionErrorPtr == nil else {
-        
         fatalError("Error creating decryption transform: "
                    + decryptionErrorPtr!.takeRetainedValue().localizedDescription)
-        
     }
     
     // Set the padding
@@ -59,10 +54,8 @@ public func LJDecrypt(data cipherTextData: Data, password passwordKey: String) t
     
     // Check for errors in setting the transform attribute
     guard decryptionErrorPtr == nil else {
-        
         fatalError("Error setting decryption transform attribute: "
             + decryptionErrorPtr!.takeRetainedValue().localizedDescription)
-        
     }
     
     let cipherTextCFData = CFDataCreate(kCFAllocatorDefault, [UInt8](cipherTextData),
@@ -74,10 +67,8 @@ public func LJDecrypt(data cipherTextData: Data, password passwordKey: String) t
     
     // Check for errors in setting the transform attribute
     guard decryptionErrorPtr == nil else {
-        
         fatalError("Error setting decryption transform attribute: "
               + decryptionErrorPtr!.takeRetainedValue().localizedDescription)
-        
     }
     
     // Perform the decryption, type annotation provided for clarity
@@ -85,18 +76,14 @@ public func LJDecrypt(data cipherTextData: Data, password passwordKey: String) t
     
     // Check for errors in performing the encryption
     guard decryptionErrorPtr == nil else {
-        
         // If something goes wrong, assume password was incorrect
         throw LJEncryptionError.incorrectPassword
-        
     }
     
     return plainTextDataRef as! Data
-    
 }
 
 public func LJEncrypt(data plainTextData: Data, password passwordKey: String) -> Data {
-    
     // Generate a key
     var keyErrorPtr: Unmanaged<CFError>? = nil
     let keySize = 256 as CFNumber
@@ -111,10 +98,8 @@ public func LJEncrypt(data plainTextData: Data, password passwordKey: String) ->
     
     // Check for errors in key generation
     guard keyErrorPtr == nil else {
-        
         // Exit if the key can't be generated, this shouldn't happen
         fatalError("Error generating key: " + keyErrorPtr!.takeRetainedValue().localizedDescription)
-        
     }
     
     var encryptionErrorPtr: Unmanaged<CFError>? = nil
@@ -124,10 +109,8 @@ public func LJEncrypt(data plainTextData: Data, password passwordKey: String) ->
     
     // Check for errors in creating the encrypt transform
     guard encryptionErrorPtr == nil else {
-        
         fatalError("Error creating encryption transform: "
               + encryptionErrorPtr!.takeRetainedValue().localizedDescription)
-        
     }
     
     // Set the padding
@@ -136,10 +119,8 @@ public func LJEncrypt(data plainTextData: Data, password passwordKey: String) ->
     
     // Check for errors in setting the transform attribute
     guard encryptionErrorPtr == nil else {
-        
         fatalError("Error setting encryption transform attribute: "
             + encryptionErrorPtr!.takeRetainedValue().localizedDescription)
-        
     }
     
     let plainTextBytes = [UInt8](plainTextData)
@@ -155,10 +136,8 @@ public func LJEncrypt(data plainTextData: Data, password passwordKey: String) ->
     
     // Check for errors in setting the transform attribute
     guard encryptionErrorPtr == nil else {
-        
         fatalError("Error setting encryption transform attribute: "
             + encryptionErrorPtr!.takeRetainedValue().localizedDescription)
-        
     }
     
     // Perform the encryption
@@ -166,12 +145,9 @@ public func LJEncrypt(data plainTextData: Data, password passwordKey: String) ->
     
     // Check for errors in performing the encryption
     guard encryptionErrorPtr == nil else {
-        
         fatalError("Error performing encryption: "
             + encryptionErrorPtr!.takeRetainedValue().localizedDescription)
-        
     }
     
     return cipherTextData
-    
 }

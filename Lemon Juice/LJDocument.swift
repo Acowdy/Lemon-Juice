@@ -58,7 +58,7 @@ class LJDocument: NSDocument {
     // This function is called when the enterPasswordField, setPasswordField or
     // confirmPassordField's text contents changes.
     override func controlTextDidChange(_ obj: Notification) {
-        let senderTextField = obj as! NSSecureTextField
+        let senderTextField = obj.object as! NSSecureTextField
         
         // Call appropriate helper method depending on which text field was altered
         if senderTextField === enterPasswordField {

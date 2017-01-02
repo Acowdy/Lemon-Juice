@@ -26,7 +26,7 @@ class LemonJuiceTests: XCTestCase {
         let plainTextData = "Hello world".data(using: String.Encoding.unicode)!
         
         // Encrypt the data
-        let cipherTextData = LJEncrypt(data: plainTextData, password: key)
+        let cipherTextData = try! LJEncrypt(data: plainTextData, password: key)
         
         var decryptedPlainTextData: Data?
         
@@ -64,7 +64,7 @@ class LemonJuiceTests: XCTestCase {
         let plainTextData = "Hello world".data(using: String.Encoding.unicode)!
         
         self.measure {
-            let _ = LJEncrypt(data: plainTextData, password: key)
+            let _ = try! LJEncrypt(data: plainTextData, password: key)
         }
     }
     
@@ -72,15 +72,10 @@ class LemonJuiceTests: XCTestCase {
         let key = "password12345"
         var plainTextData = "Hello world".data(using: String.Encoding.unicode)!
         
-        let cipherTextData = LJEncrypt(data: plainTextData, password: key)
+        let cipherTextData = try! LJEncrypt(data: plainTextData, password: key)
         
         self.measure {
-            do {
-                try plainTextData = LJDecrypt(data: cipherTextData, password: key)
-            } catch {
-                // There should definitely not be any errors here...
-                XCTFail("Decryption failed")
-            }
+            plainTextData = try! LJDecrypt(data: cipherTextData, password: key)
         }
     }
     

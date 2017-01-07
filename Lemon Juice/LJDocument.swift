@@ -12,20 +12,20 @@ import Cocoa
 // models, in this case a NSTextStorage.
 class LJDocument: NSDocument {
     
-    @IBOutlet weak private var textView: NSTextView!
+    @IBOutlet weak private var textView: NSTextView?
     
-    @IBOutlet var setPasswordSheet: NSWindow!
-    @IBOutlet weak var setPasswordField: NSSecureTextField!
-    @IBOutlet weak var confirmPasswordField: NSSecureTextField!
-    @IBOutlet weak var setPasswordErrorLabel: NSTextField!
-    @IBOutlet weak var setPasswordOKButton: NSButton!
+    @IBOutlet var setPasswordSheet: NSWindow?
+    @IBOutlet weak var setPasswordField: NSSecureTextField?
+    @IBOutlet weak var confirmPasswordField: NSSecureTextField?
+    @IBOutlet weak var setPasswordErrorLabel: NSTextField?
+    @IBOutlet weak var setPasswordOKButton: NSButton?
     
-    @IBOutlet var enterPasswordSheet: NSWindow!
-    @IBOutlet weak var enterPasswordField: NSSecureTextField!
-    @IBOutlet weak var enterPasswordErrorLabel: NSTextField!
-    @IBOutlet weak var enterPasswordOKButton: NSButton!
+    @IBOutlet var enterPasswordSheet: NSWindow?
+    @IBOutlet weak var enterPasswordField: NSSecureTextField?
+    @IBOutlet weak var enterPasswordErrorLabel: NSTextField?
+    @IBOutlet weak var enterPasswordOKButton: NSButton?
     
-    private var passwordKey: String?
+    private var passwordKey: String = ""
     private var encryptedDataToLoad: Data?
     
     override init() {
@@ -42,12 +42,12 @@ class LJDocument: NSDocument {
     }
     
     @IBAction func cancelEnterPassword(_ sender: AnyObject) {
-        windowForSheet!.endSheet(enterPasswordSheet)
+        windowForSheet?.endSheet(enterPasswordSheet!)
         close()
     }
     
     @IBAction func cancelSetPassword(_ sender: AnyObject) {
-        windowForSheet!.endSheet(setPasswordSheet)
+        windowForSheet?.endSheet(setPasswordSheet!)
         close()
     }
     
@@ -84,7 +84,7 @@ class LJDocument: NSDocument {
                                                             documentAttributes: attributes)
         var cipherTextData: Data? = nil
         do {
-            cipherTextData = try LJEncrypt(data: plainTextData, password: passwordKey!)
+            cipherTextData = try LJEncrypt(data: plainTextData, password: passwordKey)
         }
         catch let error as LJEncryptionError {
             let keyGenerationFailedAlert = NSAlert.init(error: error)
@@ -96,11 +96,11 @@ class LJDocument: NSDocument {
     
     private func enterPasswordFieldTextDidChange() {
         // Only allow the user to click the OK button if a password has been entered
-        if (enterPasswordField.stringValue != "") {
-            enterPasswordOKButton.isEnabled = true
+        if (enterPasswordField?.stringValue != "") {
+            enterPasswordOKButton?.isEnabled = true
         }
         else {
-            enterPasswordOKButton.isEnabled = false
+            enterPasswordOKButton?.isEnabled = false
         }
     }
     
@@ -117,22 +117,24 @@ class LJDocument: NSDocument {
     
     // Decrypt data with given password and validate it, then close the dialog
     @IBAction func passwordEntered(_ sender: AnyObject) {
-        passwordKey = enterPasswordField.stringValue
+        passwordKey = enterPasswordField!.stringValue
         
         // Decrypt the data with the given password
         do {
-            let plainTextData = try LJDecrypt(data: encryptedDataToLoad!, password: passwordKey!)
+            let plainTextData = try LJDecrypt(data: encryptedDataToLoad!, password: passwordKey)
             loadData(plainTextData)
             
-            windowForSheet!.endSheet(enterPasswordSheet)
+            if (enterPasswordSheet != nil) {
+                windowForSheet!.endSheet(enterPasswordSheet!)
+            }
         }
         catch let error as LJEncryptionError {
-            enterPasswordErrorLabel.stringValue = error.localizedDescription
-            enterPasswordErrorLabel.isHidden = false
+            enterPasswordErrorLabel?.stringValue = error.localizedDescription
+            enterPasswordErrorLabel?.isHidden = false
         }
         catch {
-            enterPasswordErrorLabel.stringValue = "Error"
-            enterPasswordErrorLabel.isHidden = false
+            enterPasswordErrorLabel?.stringValue = "Error"
+            enterPasswordErrorLabel?.isHidden = false
         }
     }
     
@@ -146,13 +148,13 @@ class LJDocument: NSDocument {
         
         // Validate the password
         if givenPassword.characters.count < 8 { // Passwords must be at least 8 characters long
-            setPasswordErrorLabel.stringValue = "Password must be at least 8 characters long"
-            setPasswordErrorLabel.isHidden = false
+            setPasswordErrorLabel?.stringValue = "Password must be at least 8 characters long"
+            setPasswordErrorLabel?.isHidden = false
         }
         else if givenPassword != confirmPasswordField!.stringValue {
             // The password must be the same in both fields
-            setPasswordErrorLabel.stringValue = "Passwords don't match"
-            setPasswordErrorLabel.isHidden = false
+            setPasswordErrorLabel?.stringValue = "Passwords don't match"
+            setPasswordErrorLabel?.isHidden = false
         }
         else { // Everything is in order, set the password
             passwordKey = givenPassword
@@ -162,11 +164,11 @@ class LJDocument: NSDocument {
     
     private func setPasswordFieldsTextDidChange() {
         // Only allow the user to click the OK button if a password has been entered
-        if (setPasswordField.stringValue != "" && confirmPasswordField.stringValue != "") {
-            setPasswordOKButton.isEnabled = true
+        if (setPasswordField?.stringValue != "" && confirmPasswordField?.stringValue != "") {
+            setPasswordOKButton?.isEnabled = true
         }
         else {
-            setPasswordOKButton.isEnabled = false
+            setPasswordOKButton?.isEnabled = false
         }
     }
     
